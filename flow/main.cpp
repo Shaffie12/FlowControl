@@ -9,7 +9,7 @@ void Swap(T* a, T* b)
 }
 
 template <typename T>
-void SortInPlace(T* inArr, int numElements, bool ascOrder = true)
+void SortNumbersInPlace(T* inArr, int numElements, bool ascOrder = true)
 {
 	bool sorted = false;
 
@@ -55,6 +55,34 @@ rescan:
 }
 
 template<typename T>
+void SortNumbersInPlaceLoops(T* inArr, int NumElements, bool ascOrder = true)
+{
+	int i = 0;
+	while (i < NumElements-1)
+	{
+		if (ascOrder)
+		{
+			if (inArr[i] > inArr[i + 1])
+			{
+				Swap(&inArr[i], &inArr[i + 1]);
+				i = 0;
+				continue;
+			}
+		}
+		else
+		{
+			if (inArr[i] < inArr[i + 1])
+			{
+				Swap(&inArr[i], &inArr[i + 1]);
+				i = 0;
+				continue;
+			}
+		}
+		i++;
+	}
+}
+
+template<typename T>
 void PrintArr(T* inArr, int arrSize)
 {
 	T* ptr = inArr;
@@ -76,7 +104,7 @@ int main()
 	int arr[5]{ 4,55,26,70,245 };
 
 	PrintArr(&arr[0], 5);
-	SortInPlace(&arr[0], 5, false);
+	SortNumbersInPlaceLoops(&arr[0], 5, false);
 	PrintArr(&arr[0], 5);
 	return 0;
 }
